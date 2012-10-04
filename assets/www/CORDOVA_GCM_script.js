@@ -1,4 +1,3 @@
-
 gApp = new Array();
 
 gApp.deviceready = false;
@@ -34,7 +33,7 @@ document.addEventListener('deviceready', function() {
   // CHANGE: your_app_id
   // TO: what ever your GCM authorized senderId is
   //
-  window.GCM.register("<Your GCM Sender ID>", "GCM_Event", GCM_Success, GCM_Fail );
+  window.GCM.register("your_sender_id", "GCM_Event", GCM_Success, GCM_Fail );
 
 }, false );
 
