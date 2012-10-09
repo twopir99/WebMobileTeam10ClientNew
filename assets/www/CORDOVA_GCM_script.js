@@ -71,7 +71,7 @@ GCM_Event(e)
     break
 
   case 'message':
-    // the definition of the e variable is json return defined in GCMReceiver.java
+    // the definition of the e variable is json return defined in GCMIntentService.java
     // In my case on registered I have EVENT, MSG and MSGCNT defined
 
     // You will NOT receive any messages unless you build a HOST server application to send
