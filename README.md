@@ -58,3 +58,5 @@ In the CORDOVA_GCM_script.js script you will see an example of how to interact w
 If you run this demo using the emulator you will not receive notifications from GCM. You need to run it on an actual device to receive messages or install the proper libraries on your emulator (You can follow [this guide](http://www.androidhive.info/2012/10/android-push-notifications-using-google-cloud-messaging-gcm-php-and-mysql/) under the section titled "Installing helper libraries and setting up the Emulator")
 
 If everything seems right and you are not receiving a registration id response back from Google, try uninstalling and reinstalling your app. That has worked for some devs out there.
+
+Google gcm supports booth json and plain text messages but this plugin is setup for json use only
