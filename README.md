@@ -42,7 +42,7 @@ Modify your res/xml/plugins.xml to include the following line in order to tell C
     <plugin name="GCMPlugin" value="com.plugin.GCM.GCMPlugin" />
 
 
-Follow the instructions [here](http://developer.android.com/guide/google/gcm/gs.html) on creating a Google API project to obtain a GCM sender ID. Replace all instances of "your_sender_id" in this plugin with that id.
+Follow the instructions [here](http://developer.android.com/guide/google/gcm/gs.html) on creating a Google API project to obtain a GCM sender ID. Replace all instances of "your_sender_id" in this plugin with that id (make sure you pass the ID as a string, not an int).
 
 
 Add the GCMPlugin.js script to your assets/www folder (or javascripts folder, wherever you want really) and include it in your main index.html file.
@@ -66,7 +66,7 @@ Google gcm supports booth json and plain text messages but this plugin is setup 
 
 The MIT License
 
-Copyright (c) 2011 Ian Tipton
+Copyright (c) 2013 Mark Nutter
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
