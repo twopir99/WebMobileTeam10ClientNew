@@ -61,6 +61,8 @@ If everything seems right and you are not receiving a registration id response b
 
 Google gcm supports booth json and plain text messages but this plugin is setup for json use only
 
+If you copy the AndroidManifest.xml settings from the readme page on github, you may run into issues with invalid whitespace. If so, remove all white spaces and manually re-add them or copy the manifest settings directly from the file (not the web).
+
 
 ## LICENSE ##
 
