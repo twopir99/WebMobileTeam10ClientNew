@@ -1,21 +1,413 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
 <html>
-<head>
-<title>com.PhoneGap.c2dm</title>
-<script type="text/javascript" charset="utf-8" src="cordova-2.1.0.js"></script>
-<script src="GCMPlugin.js"></script> <!-- GCM Cordova plugin -->
-<script type="text/javascript" charset="utf-8" src="jquery_1.5.2.min.js"></script>
+    <head>
+    
+    
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+	<link rel="stylesheet" type="text/css" href="css/index.css" />
+	
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.0/jquery.mobile-1.3.0.css" />
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript" src="http://code.jquery.com/mobile/1.3.0/jquery.mobile-1.3.0.js"></script>
+	<script type="text/javascript" src="./js/jquery.cookie.js"></script>
+	<script type="text/javascript" src="./js/login.js"></script>
+	<script type="text/javascript" src="./js/createAccount.js"></script>
+	<script type="text/javascript" src="./js/schedule.js"></script>
+	<script type="text/javascript" src="./js/editAccount.js"></script>
+	<script type="text/javascript" src="./js/mySchedule.js"></script>
+	<script type="text/javascript" src="./js/myScheduleList.js"></script>
+	
+	<style type="text/css">
+		.ui-field-contain div.ui-slider-switch { width: 130px;  }
+	</style>
+	<style type="text/css">
+		#list ul
+		{
+		margin: 0;
+		padding: 0;
+		list-style-type: none;
+		}
+		#list li
+		{
+		margin: 0;
+		padding: 0;
+		list-style-type: none;
+		color: #FFFFFF;
+		background : #6699CC;
+		}
+		#list a
+		{
+		display: block;
+		color: #FFFFFF;
+		background-color: #6699CC);
+		padding: 3px 12px 3px 8px;
+		text-decoration: none;
+		border-bottom: 1px solid #fff;
+		}
+	</style>
+	<title>Find a partner</title>
 
-<!-- Include my Javascript routines -->
-<script type="text/javascript" charset="utf-8" src="GCMPlugin.js"></script>
-<script type="text/javascript" charset="utf-8" src="CORDOVA_GCM_script.js"></script>
-
+	<script lanuage="javscript">
+		function changePage(){
+			
+			location.href="test2.html";
+		}
+		
+		function setCookie(key, value) {  
+		   var expires = new Date();  
+		   expires.setTime(expires.getTime() + 43200000); //12 hours  
+		   document.cookie = key + '=' + value + ';expires=' + expires.toUTCString();  
+		   }  
+		  
+		function getCookie(key) {  
+		   var keyValue = document.cookie.match('(^|;) ?' + key + '=([^;]*)(;|$)');  
+		   return keyValue ? keyValue[2] : null;  
+		}  
+		
+	</script>
 </head>
 <body>
-	<div id="app-status-div">
-		<ul id="app-status-ul">
-			<li>Cordova Google Cloud Messaging Plugin Demo</li>
-		</ul>
+
+<div data-role="page" id="loginPage">
+	<div data-role="header" data-position="fixed" data-theme="b">
+		<h1>Log-in</h1>
 	</div>
+	<div data-role="content" data-theme="b">
+   
+		<div data-role="fieldcontain"  >
+			<label for="userid">User ID:</label>
+			<input type="text" name="userid" id="userid" value="" placeholder="userid"/>
+		</div>
+		<div data-role="fieldcontain"  >
+			<label for="password">Password:</label>
+			<input type="password" name="password" id="password" value="" placeholder="password"/>
+		</div>
+		<input type="button" id="loginButton" value="Log-in">
+		<a href="#createAccountPage" data-role="button">Create account</a>
+	</div>
+	<div data-role="footer" data-theme="b">
+		<div data-role="fieldcontain"  >
+			<div id="loginResponse"></div>
+		</div>
+	</div>
+</div>
+
+<div data-role="page" id="createAccountPage" data-add-back-btn="true">
+	
+	<div data-role="header" data-position="fixed" data-theme="b">
+		<h1>Log-in</h1>
+	</div>
+	<div data-role="content" data-theme="b">
+   
+		<div data-role="fieldcontain"  >
+			<label for="reguserid">User ID:</label>
+			<input type="text" name="reguserid" id="reguserid" value="" placeholder="reguserid"/>
+		</div>
+		<div data-role="fieldcontain"  >
+			<label for="regpassword">Password:</label>
+			<input type="password" name="regpassword" id="regpassword" value="" placeholder="regpassword"/>
+		</div>
+		<div data-role="fieldcontain"  >
+			<label for="name">User Name:</label>
+			<input type="text" name="name" id="name" value="" placeholder="name"/>
+		</div>
+		<div data-role="fieldcontain"  >
+			<label for="gender">Gender:</label>
+			<select name="gender" id="gender" data-role="slider">
+				<option value="male">Male</option>
+				<option value="female">Female</option>
+			</select>
+		</div>
+		<div data-role="fieldcontain"  >
+			<label for="age">Age:</label>
+			<input type="number" name="age" id="age" value="" placeholder="age"/>
+		</div>
+		<div data-role="fieldcontain"  >
+			<label for="nationality">Nationality:</label>
+			<select name="nationality" id="nationality">
+			</select>
+		</div>
+		<div data-role="fieldcontain"  >
+			<label for="level">Level:</label>
+			<input type="number" name="level" id="level" value="" placeholder="level"/>
+		</div>
+		<a href="levelPage.html" data-role="button">What's my level</a>
+		<div data-role="fieldcontain"  >
+			<label for="email">E-Mail:</label>
+			<input type="text" name="email" id="email" value="" placeholder="email"/>
+		</div>
+		<div data-role="fieldcontain"  >
+			<label for="phonenumber">Phone Number:</label>
+			<input type="text" name="phonenumber" id="phonenumber" value="" placeholder="phonenumber"/>
+		</div>
+		<input type="button" id="createAccountButton" value="Create account">
+	</div>
+</div>
+
+<div data-role="page" id="main">
+	<div data-role="header" data-position="fixed" data-theme="b">
+		<h1>Main Menus</h1>
+	</div> 
+	<div data-role="content" data-theme="b">
+		<a href="editProfilePage.html" data-role="button">Edit profile</a>
+		
+		<!--  <a href="levelPage.html" data-role="button">What's my level</a>  -->
+		<a href="#schedulePage" data-role="button">Schedule</a>
+		<!--  <a href="#manageCourts" data-role="button">Manage courts</a> -->
+		<a href="#myScheduleList" data-role="button">My schedule</a>
+	</div>
+	
+</div>
+
+<div data-role="page" id="schedulePage" data-add-back-btn="true">
+	
+	<div data-role="header" data-position="fixed" data-theme="b">
+		<h1>Schedule</h1>
+	</div>
+	<div data-role="content" data-theme="b">
+   
+		<div data-role="fieldcontain"  >
+			<label for="date">Date:</label>
+			<input type="date" name="date" id="date" value="" placeholder="date"/>
+		</div>
+		<div data-role="fieldcontain"  >
+			<fieldset data-role="controlgroup" data-type="horizontal" >
+			<legend>Time Start: </legend>
+			<input type="radio" name="timestart" id="timestart1" class="custom" value="7" data-mini="true" />
+			<label for="timestart1">07:00</label>
+			<input type="radio" name="timestart" id="timestart2" class="custom" value="8" data-mini="true" />
+			<label for="timestart2">08:00</label>
+			<input type="radio" name="timestart" id="timestart3" class="custom" value="9" data-mini="true" />
+			<label for="timestart3">09:00</label>
+			<input type="radio" name="timestart" id="timestart4" class="custom" value="10" data-mini="true" />
+			<label for="timestart4">10:00</label>
+			<input type="radio" name="timestart" id="timestart5" class="custom" value="11" data-mini="true" />
+			<label for="timestart5">11:00</label>
+			<input type="radio" name="timestart" id="timestart6" class="custom" value="12" data-mini="true" />
+			<label for="timestart6">12:00</label>
+			<input type="radio" name="timestart" id="timestart7" class="custom" value="13" data-mini="true" />
+			<label for="timestart7">13:00</label>
+			<input type="radio" name="timestart" id="timestart8" class="custom" value="14" data-mini="true" />
+			<label for="timestart8">14:00</label>
+			<input type="radio" name="timestart" id="timestart9" class="custom" value="15" data-mini="true" />
+			<label for="timestart9">15:00</label>
+			<input type="radio" name="timestart" id="timestart10" class="custom" value="16" data-mini="true" />
+			<label for="timestart10">16:00</label>
+			<input type="radio" name="timestart" id="timestart11" class="custom" value="17" data-mini="true" />
+			<label for="timestart11">17:00</label>
+			<input type="radio" name="timestart" id="timestart12" class="custom" value="18" data-mini="true" />
+			<label for="timestart12">18:00</label>
+			<input type="radio" name="timestart" id="timestart13" class="custom" value="19" data-mini="true" />
+			<label for="timestart13">19:00</label>
+			<input type="radio" name="timestart" id="timestart14" class="custom" value="20" data-mini="true" />
+			<label for="timestart14">20:00</label>
+			
+			</fieldset>
+		</div>
+		<div data-role="fieldcontain"  >
+			<fieldset data-role="controlgroup" data-type="horizontal" >
+			<legend>Time End: </legend>
+			<input type="radio" name="timeend" id="timeend1" class="custom" value="8" data-mini="true" />
+			<label for="timeend1">08:00</label>
+			<input type="radio" name="timeend" id="timeend2" class="custom" value="9" data-mini="true" />
+			<label for="timeend2">09:00</label>
+			<input type="radio" name="timeend" id="timeend3" class="custom" value="10" data-mini="true" />
+			<label for="timeend3">10:00</label>
+			<input type="radio" name="timeend" id="timeend4" class="custom" value="11" data-mini="true" />
+			<label for="timeend4">11:00</label>
+			<input type="radio" name="timeend" id="timeend5" class="custom" value="12" data-mini="true" />
+			<label for="timeend5">12:00</label>
+			<input type="radio" name="timeend" id="timeend6" class="custom" value="13" data-mini="true" />
+			<label for="timeend6">13:00</label>
+			<input type="radio" name="timeend" id="timeend7" class="custom" value="14" data-mini="true" />
+			<label for="timeend7">14:00</label>
+			<input type="radio" name="timeend" id="timeend8" class="custom" value="15" data-mini="true" />
+			<label for="timeend8">15:00</label>
+			<input type="radio" name="timeend" id="timeend9" class="custom" value="16" data-mini="true" />
+			<label for="timeend9">16:00</label>
+			<input type="radio" name="timeend" id="timeend10" class="custom" value="17" data-mini="true" />
+			<label for="timeend10">17:00</label>
+			<input type="radio" name="timeend" id="timeend11" class="custom" value="18" data-mini="true" />
+			<label for="timeend11">18:00</label>
+			<input type="radio" name="timeend" id="timeend12" class="custom" value="19" data-mini="true" />
+			<label for="timeend12">19:00</label>
+			<input type="radio" name="timeend" id="timeend13" class="custom" value="20" data-mini="true" />
+			<label for="timeend13">20:00</label>
+			<input type="radio" name="timeend" id="timeend14" class="custom" value="21" data-mini="true" />
+			<label for="timeend14">21:00</label>
+			</fieldset>
+		</div>
+		<div data-role="fieldcontain"  >
+			<fieldset data-role="controlgroup" data-type="horizontal" >
+			<legend>Level: </legend>
+			<input type="checkbox" name="plevel" id="plevel10" class="custom" value="1.0" data-mini="false" />
+			<label for="plevel10">1.0</label>
+			<input type="checkbox" name="plevel" id="plevel15" class="custom" value="1.5" data-mini="false" />
+			<label for="plevel15">1.5</label>
+			<input type="checkbox" name="plevel" id="plevel20" class="custom" value="2.0" data-mini="false" />
+			<label for="plevel20">2.0</label>
+			<input type="checkbox" name="plevel" id="plevel25" class="custom" value="2.5" data-mini="false" />
+			<label for="plevel25">2.5</label>
+			<input type="checkbox" name="plevel" id="plevel30" class="custom" value="3.0" data-mini="false" />
+			<label for="plevel30">3.0</label>
+			<input type="checkbox" name="plevel" id="plevel35" class="custom" value="3.5" data-mini="false" />
+			<label for="plevel35">3.5</label>
+			<input type="checkbox" name="plevel" id="plevel40" class="custom" value="4.0" data-mini="false" />
+			<label for="plevel40">4.0</label>
+			<input type="checkbox" name="plevel" id="plevel45" class="custom" value="4.5" data-mini="false" />
+			<label for="plevel45">4.5</label>
+			<input type="checkbox" name="plevel" id="plevel50" class="custom" value="5.0" data-mini="false" />
+			<label for="plevel50">5.0</label>
+			<input type="checkbox" name="plevel" id="plevel55" class="custom" value="5.5" data-mini="false" />
+			<label for="plevel55">5.5</label>
+			<input type="checkbox" name="plevel" id="plevel60" class="custom" value="6.0" data-mini="false" />
+			<label for="plevel60">6.0</label>
+			<input type="checkbox" name="plevel" id="plevel65" class="custom" value="6.5" data-mini="false" />
+			<label for="plevel65">6.5</label>
+			<input type="checkbox" name="plevel" id="plevel70" class="custom" value="7.0" data-mini="false" />
+			<label for="plevel70">7.0</label>
+			
+			</fieldset>
+		</div>
+			<div data-role="fieldcontain"  >
+			<fieldset data-role="controlgroup" data-type="horizontal" >
+			<legend>Age: </legend>
+			<input type="checkbox" name="page" id="page1" class="custom" value="10" data-mini="false" />
+			<label for="page1">10-13</label>
+			<input type="checkbox" name="page" id="page2" class="custom" value="14" data-mini="false" />
+			<label for="page2">14-17</label>
+			<input type="checkbox" name="page" id="page3" class="custom" value="18" data-mini="false" />
+			<label for="page3">18-39</label>
+			<input type="checkbox" name="page" id="page4" class="custom" value="40" data-mini="false" />
+			<label for="page4">40-54</label>
+			<input type="checkbox" name="page" id="page5" class="custom" value="55" data-mini="false" />
+			<label for="page5">above 55</label>
+			</fieldset>
+			
+		</div>
+		<div data-role="fieldcontain"  >
+			<label for="pgender">Gender:</label>
+			<select name="pgender" id="pgender">
+				<option value="any">Any</option>
+				<option value="male">Male</option>
+				<option value="female">Female</option>
+			</select>
+		</div>
+
+		<div data-role="fieldcontain"  >
+			<label for="pnationality">Nationality:</label>
+			<select name="pnationality" id="pnationality">
+			<option value="any">Any</option>
+			</select>
+		</div>
+		<div data-role="fieldcontain"  >
+			<label for="ptype">Double/Single:</label>
+			<select name="ptype" id="ptype">
+				<option value="any">Any</option>
+				<option value="double">Double</option>
+				<option value="single">Single</option>
+			</select>
+		</div>
+		
+		<input type="button" id="makeScheduleButton" value="Make schedule">
+	</div>
+</div>
+
+<div data-role="page" id="myScheduleList" data-add-back-btn="true">
+	
+	<div data-role="header" data-position="fixed" data-theme="b">
+		<h1>My Schedule List</h1>
+	</div>
+	<div data-role="content" data-theme="b">
+		<div data-role="fieldcontain" name="schedulelist" id="schedulelist" >
+		</div>
+		<div id="list"></div>
+		<div id="listview"></div>
+		
+	</div>
+</div>
+
+
+
+<div data-role="page" id="mySchedulePage" data-add-back-btn="true">
+	
+	<div data-role="header" data-position="fixed" data-theme="b">
+		<h1>My Schedule</h1>
+	</div>
+	<div data-role="content" data-theme="b">
+		<div data-role="fieldcontain"  >
+			<label for="date">Date:</label>
+			<input type="text" name="date" id="date" class="custom" value="" data-mini="true" />
+		</div>
+		<div data-role="fieldcontain"  >
+			<label for="timestart">Time Start:</label>
+			<input type="text" name="timestart" id="timestart" class="custom" value="" data-mini="true" />
+		</div>
+		<div data-role="fieldcontain"  >
+			<label for="timeend">Time End:</label>
+			<input type="text" name="timeend" id="timeend" class="custom" value="" data-mini="true" />
+		</div>
+		<div data-role="fieldcontain"  >
+			<label for="plevel">Partner's Level:</label>
+			<input type="text" name="plevel" id="plevel" class="custom" value="" data-mini="true" />
+		</div>
+			<div data-role="fieldcontain"  >
+			<label for="page">Partner's Age:</label>
+			<input type="text" name="page" id="page" class="custom" value="" data-mini="true" />
+		</div>
+		<div data-role="fieldcontain"  >
+			<label for="pgender">Partner's Gender:</label>
+			<input type="text" name="pgender" id="pgender" class="custom" value="" data-mini="true" />
+		</div>
+		<div data-role="fieldcontain"  >
+			<label for="pnationality">Partner's Nationality:</label>
+			<input type="text" name="pnationality" id="pnationality" class="custom" value="" data-mini="true" />
+		</div>
+		<div data-role="fieldcontain"  >
+			<label for="type">Type:</label>
+			<input type="text" name="type" id="type" class="custom" value="" data-mini="true" />
+		</div>
+		<div data-role="fieldcontain"  >
+			<label for="status">Status:</label>
+			<input type="text" name="status" id="status" class="custom" value="" data-mini="true" />
+		</div>
+		<div data-role="fieldcontain"  >
+			<label for="puserid">Partner ID:</label>
+			<input type="text" name="puserid" id="puserid" class="custom" value="" data-mini="true" />
+		</div>
+		<div data-role="fieldcontain"  >
+			<label for="statuspush">Push:</label>
+			<input type="text" name="statuspush" id="statuspush" class="custom" value="" data-mini="true" />
+		</div>
+		<div data-role="fieldcontain"  >
+			<label for="statusmail">Mail:</label>
+			<input type="text" name="statusmail" id="statusmail" class="custom" value="" data-mini="true" />
+		</div>
+		
+		<input type="button" id="cancellButton" value="Cancell schedule">
+	</div>
+</div>
+
+
 </body>
 </html>
+
